@@ -8,7 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node app.js",
+    "start": "node rss-script.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Atul Varma <varmaa@gmail.com>",
