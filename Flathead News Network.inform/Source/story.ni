@@ -1,5 +1,7 @@
 "Flathead News Network"
 
+Release along with an interpreter, a "FNN" website, and source text.
+
 The file of RSS Requests is called "rssrequest". 
 
 The file of RSS Responses (owned by project "RSS-SCRIPT") is called "rssreply". 

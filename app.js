@@ -1,5 +1,5 @@
-// This is a JS port of the Perl script from the Flathead News Network
-// Inform 7 example:
+// This is a JS (NodeJS + browser) port of the Perl script from the
+// Flathead News Network Inform 7 example:
 //
 //   http://inform7.com/learn/man/RB_12_5.html#e332
 //
@@ -9,13 +9,17 @@
   var REQUEST_FILE = 'rssrequest';
   var REPLY_FILE = 'rssreply';
   var IN_BROWSER = typeof(window) !== 'undefined';
+  var RSS_URL_PREFIX = IN_BROWSER ? 'http://crossorigin.me/http://'
+                                  : 'http://';
 
   var glkfs = IN_BROWSER ? window.glkfs : require('./glkfs');
-  var $ = IN_BROWSER ? window.$ : require('cheerio');
+  var $ = IN_BROWSER ? window.jQuery : require('cheerio');
   var XMLHttpRequest = IN_BROWSER ? window.XMLHttpRequest
                                   : require('xmlhttprequest').XMLHttpRequest;
 
   if (!glkfs.exists(REPLY_FILE)) glkfs.write(REPLY_FILE, '');
+
+  console.log("Waiting for changes to " + REQUEST_FILE + "...");
 
   // repeat forever:
   setInterval(function() {
@@ -30,7 +34,7 @@
       var req = new XMLHttpRequest();
 
       console.log("fetching " + rss_feed);
-      req.open('GET', 'http://' + rss_feed); // download the RSS feed
+      req.open('GET', RSS_URL_PREFIX + rss_feed); // download the RSS feed
       req.onload = function() {
         // look for the title and description of the first item:
         var xml = IN_BROWSER ? req.responseXML
