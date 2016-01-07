@@ -59,10 +59,13 @@ var glkfs = (function() {
     var fs = require('fs');
 
     self.read = function(filename) {
+      // TODO: Actually, .glkdata files are latin-1, I think, so it might
+      // be nice to decode from that.
       return fs.readFileSync(filename + '.glkdata', 'ascii');
     };
 
     self.write = function(filename, str) {
+      // TODO: Encode to latin-1?
       return fs.writeFileSync(filename + '.glkdata', str);
     };
 
